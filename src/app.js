@@ -10,6 +10,7 @@ import pickRoutes from "./routes/pickRoutes.js";
 import leagueRoutes from "./routes/leagueRoutes.js";
 import teamsRoutes from "./routes/teamRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
+import paymentRoutes from "./routes/paymentRoutes.js";
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ app.use("/api/predictions",predictionRoutes);
 app.use("/api/picks", pickRoutes);
 app.use("/api/leagues", leagueRoutes);
 app.use("/api/teams", teamsRoutes);
+app.use("/api/payments",paymentRoutes);
 app.get("/", (_, res) => {
   res.send("API funcionando 🚀");
 });
