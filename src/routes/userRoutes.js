@@ -1,6 +1,6 @@
 import express from "express";
 
-import { syncUser, getLeaderboard } from "../controllers/userController.js";
+import { syncUser, getLeaderboard, getUserProfile } from "../controllers/userController.js";
 
 import { verifyFirebaseToken } from "../middlewares/authMiddleware.js";
 
@@ -15,6 +15,11 @@ router.post(
 router.get(
   "/leaderboard",
   getLeaderboard
+);
+
+router.get(
+  "/profile/:uid",
+  getUserProfile
 );
 
 export default router;

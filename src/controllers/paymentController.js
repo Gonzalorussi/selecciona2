@@ -11,10 +11,23 @@ export async function createPreference(
     res
 ) {
     try {
+        console.log(
+            "MP TOKEN:",
+            process.env.MP_ACCESS_TOKEN
+        );
+
+        console.log(
+            "FRONTEND_URL:",
+            process.env.FRONTEND_URL
+        );
+
+        console.log(
+            "REQ USER:",
+            req.user
+        );
         const {
             uid,
             email,
-            displayName,
         } = req.user;
 
         const preference = new Preference(client);
@@ -22,14 +35,17 @@ export async function createPreference(
         const result =
             await preference.create({
                 body: {
+                    external_reference: uid,
+
+                    statement_descriptor: "SELECCIONA2",
+
                     items: [
                         {
                             id: "pro-access",
-                            title:
-                                "Selecciona2 PRO",
+                            title: "Selecciona2 PRO",
                             quantity: 1,
                             currency_id: "ARS",
-                            unit_price: 3000,
+                            unit_price: 3000.00,
                         },
                     ],
 
@@ -39,7 +55,6 @@ export async function createPreference(
 
                     metadata: {
                         uid,
-                        displayName
                     },
 
                     back_urls: {
@@ -51,19 +66,24 @@ export async function createPreference(
                             `${process.env.FRONTEND_URL}/payment/failure`,
                     },
 
-                    //auto_return: "approved",
+                    auto_return: "approved",
 
                     notification_url:
                         "https://selecciona2-api-1001848154161.southamerica-east1.run.app/api/payments/webhook",
                 },
             });
 
+            
+                console.log(result.init_point);
+
         return res.json({
             init_point:
                 result.init_point,
         });
     } catch (error) {
-        console.error(error);
+        console.error(
+            JSON.stringify(error, null, 2)
+        );
 
         return res.status(500).json({
             message:

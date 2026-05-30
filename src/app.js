@@ -39,6 +39,16 @@ app.get("/", (_, res) => {
   res.send("API funcionando 🚀");
 });
 
+console.log(
+  "ENV CHECK:",
+  process.env.MP_ACCESS_TOKEN
+);
+
+console.log(
+  "FRONT URL:",
+  process.env.FRONTEND_URL
+);
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, "0.0.0.0", () => {
