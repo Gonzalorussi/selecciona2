@@ -128,11 +128,7 @@ export async function getUserProfile(
         Object.keys(predictions).length;
     }
 
-    /*
-    ==========================
-    LIGAS
-    ==========================
-    */
+    
 
     let leagues = [];
 
