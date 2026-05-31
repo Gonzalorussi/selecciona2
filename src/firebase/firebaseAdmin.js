@@ -2,7 +2,7 @@ import admin from "firebase-admin";
 
 admin.initializeApp({
     credential: admin.credential.cert(
-        JSON.parse(process.env.SERVICE_ACCOUNT_KEY)
+        JSON.parse(process.env.FIREBASE_ACCOUNT_KEY)
     ),
     projectId: "selecciona2-v2",
 });
